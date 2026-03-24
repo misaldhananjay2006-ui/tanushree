@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>तनुश्री ट्रेडर्स</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A017;
+    --deep-green: #1B4332;
+    --light-green: #40916C;
+    --cream: #FFF8E7;
+    --orange: #E76F00;
+    --dark: #0D1B0F;
+    --text: #1A1A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Tiro Devanagari Marathi', serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(27, 67, 50, 0.96);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 5%;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .nav-logo .icon { font-size: 2rem; }
+  .nav-logo span {
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+  }
+  nav ul a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(155deg, var(--deep-green) 0%, #2D6A4F 50%, #1B4332 100%);
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.78rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(212,160,23,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,160,23,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(212,160,23,0.1); }
+
+  .hero-right {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 16px; z-index: 2;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(212,160,23,0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    color: #fff;
+  }
+  .stat-card .num { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Poppins', sans-serif; }
+  .stat-card .label { font-size: 0.85rem; opacity: 0.85; margin-top: 2px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 5%; }
+
+  .section-tag {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light-green);
+    background: rgba(64,145,108,0.1);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--deep-green);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: #fff; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .about-visual {
+    background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '🌿';
+    position: absolute; top: -20px; right: -20px;
+    font-size: 8rem; opacity: 0.08;
+    transform: rotate(-20deg);
+  }
+  .about-visual .big-icon { font-size: 5rem; margin-bottom: 20px; display: block; }
+  .about-visual h3 { font-size: 1.6rem; margin-bottom: 10px; }
+  .about-visual p { opacity: 0.85; line-height: 1.7; }
+  .about-info h2 { font-size: 1.9rem; color: var(--deep-green); margin-bottom: 18px; }
+  .about-info p { color: #555; line-height: 1.9; margin-bottom: 16px; font-size: 1.05rem; }
+  .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 14px;
+    border-left: 3px solid var(--gold);
+  }
+  .highlight-item .hi { font-size: 1.4rem; }
+  .highlight-item p { font-size: 0.9rem; color: #444; line-height: 1.5; margin: 0; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 50px;
+  }
+  .service-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 28px;
+    border: 1px solid rgba(27,67,50,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--deep-green), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(27,67,50,0.12); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card .icon { font-size: 2.8rem; margin-bottom: 18px; display: block; }
+  .service-card h3 { font-size: 1.2rem; color: var(--deep-green); margin-bottom: 10px; }
+  .service-card p { color: #666; font-size: 0.95rem; line-height: 1.7; }
+
+  /* ── FORM ── */
+  .form-section {
+    background: linear-gradient(135deg, var(--deep-green) 0%, #2D6A4F 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='35'/%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+  .form-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .form-info { color: #fff; }
+  .form-info .section-tag { color: var(--gold); background: rgba(212,160,23,0.15); }
+  .form-info .section-title { color: #fff; }
+  .form-info .section-sub { color: rgba(255,255,255,0.75); }
+  .form-steps { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .form-step { display: flex; gap: 16px; align-items: flex-start; }
+  .step-num {
+    width: 36px; height: 36px; min-width: 36px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--dark);
+  }
+  .form-step p { color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.6; margin: 0; padding-top: 6px; }
+
+  .form-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .form-card h3 {
+    font-size: 1.4rem;
+    color: var(--deep-green);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .form-card .form-subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--deep-green);
+    margin-bottom: 8px;
+  }
+  .form-group label span { color: #e74c3c; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid #E8EFE8;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Tiro Devanagari Marathi', serif;
+    color: var(--text);
+    background: #FAFDF8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--light-green);
+    box-shadow: 0 0 0 3px rgba(64,145,108,0.15);
+    background: #fff;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-family: 'Tiro Devanagari Marathi', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(27,67,50,0.3);
+    margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(27,67,50,0.4); }
+  .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  /* success / error */
+  .msg-box {
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    margin-top: 16px;
+    display: none;
+    text-align: center;
+  }
+  .msg-success { background: #D1F7E0; color: #1B4332; border: 1px solid #52B788; }
+  .msg-error   { background: #FFE5E5; color: #9B2226; border: 1px solid #E57373; }
+
+  /* ── CONTACT ── */
+  .contact { background: #fff; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 50px;
+  }
+  .contact-card {
+    text-align: center;
+    padding: 36px 24px;
+    background: var(--cream);
+    border-radius: 16px;
+    border: 1px solid rgba(27,67,50,0.1);
+  }
+  .contact-card .icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .contact-card h4 { font-size: 1.05rem; color: var(--deep-green); margin-bottom: 8px; }
+  .contact-card p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+  .contact-card a { color: var(--light-green); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 36px 5%;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  footer .footer-name { color: var(--gold); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+
+  /* ── SPINNER ── */
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .form-inner { grid-template-columns: 1fr; gap: 36px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="icon">🌿</span>
+    <span>तनुश्री<br>ट्रेडर्स</span>
+  </div>
+  <ul>
+    <li><a href="#about">आमच्याबद्दल</a></li>
+    <li><a href="#services">सेवा</a></li>
+    <li><a href="#register">नोंदणी करा</a></li>
+    <li><a href="#contact">संपर्क</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ विश्वासू आले व्यापार केंद्र ✦</div>
+    <h1>तनुश्री<br><span>ट्रेडर्स</span></h1>
+    <p>शेतकऱ्यांसाठी सर्वोत्तम दर, पारदर्शक व्यवहार आणि त्वरित पेमेंट. आपले आले योग्य किमतीत विकण्यासाठी आमच्याशी संपर्क करा.</p>
+    <div class="hero-btns">
+      <a href="#register" class="btn-primary">🌿 आत्ता नोंदणी करा</a>
+      <a href="#about" class="btn-outline">अधिक जाणून घ्या</a>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="fade-up">
+    <div class="section-tag">आमच्याबद्दल</div>
+    <div class="about-grid">
+      <div class="about-visual">
+        <span class="big-icon">🫚</span>
+        <h3>शुद्ध आले, उत्तम दर्जा</h3>
+        <p>गेल्या १५ वर्षांपासून आम्ही शेतकऱ्यांकडून थेट आले खरेदी करून बाजारात पोहोचवत आहोत. आमची ओळख म्हणजे प्रामाणिकपणा आणि उत्तम किंमत.</p>
+      </div>
+      <div class="about-info">
+        <h2>तनुश्री ट्रेडर्सबद्दल</h2>
+        <p>आम्ही महाराष्ट्रातील एक प्रमुख आले खरेदी एजन्सी आहोत. आमचे उद्दिष्ट म्हणजे प्रत्येक शेतकऱ्याला त्याच्या मेहनतीचा योग्य मोबदला मिळवून देणे.</p>
+        <p>शेतकरी थेट आमच्याकडे आले विकू शकतात — कोणताही दलाल नाही, कोणताही अतिरिक्त खर्च नाही. वजनकाटा पारदर्शक असतो आणि पेमेंट त्वरित दिले जाते.</p>
+        <div class="highlights">
+          <div class="highlight-item">
+            <span class="hi">⚖️</span>
+            <p>पारदर्शक वजनकाटा व योग्य मोजमाप</p>
+          </div>
+          <div class="highlight-item">
+            <span class="hi">💰</span>
+            <p>त्वरित व रोख पेमेंट</p>
+          </div>
+          <div class="highlight-item">
+            <span class="hi">🚛</span>
+            <p>मालाची वाहतूक व साठवण सुविधा</p>
+          </div>
+          <div class="highlight-item">
+            <span class="hi">📞</span>
+            <p>२४/७ शेतकरी सहायता</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="fade-up" style="text-align:center;">
+    <div class="section-tag">आमच्या सेवा</div>
+    <h2 class="section-title">आम्ही काय करतो?</h2>
+    <p class="section-sub" style="margin:0 auto;">शेतकऱ्यांच्या सर्व गरजा पूर्ण करण्यासाठी आम्ही सदैव तत्पर आहोत.</p>
+  </div>
+  <div class="services-grid fade-up" style="transition-delay:0.15s;">
+    <div class="service-card">
+      <span class="icon">🛒</span>
+      <h3>थेट आले खरेदी</h3>
+      <p>शेतकऱ्यांकडून थेट आले खरेदी करतो. बाजार भावाप्रमाणे किंवा त्यापेक्षा जास्त दराने खरेदी करण्याची आमची हमी.</p>
+    </div>
+    <div class="service-card">
+      <span class="icon">📦</span>
+      <h3>साठवण व पॅकेजिंग</h3>
+      <p>आमच्याकडे आधुनिक साठवण सुविधा आहे. योग्य तापमान व आर्द्रतेत आले जतन केले जाते जेणेकरून दर्जा टिकतो.</p>
+    </div>
+    <div class="service-card">
+      <span class="icon">🚚</span>
+      <h3>दारापर्यंत मालउचल</h3>
+      <p>शेतातून थेट आमच्या गोदामापर्यंत माल उचलण्याची सुविधा. शेतकऱ्याला कोठेही जाण्याची गरज नाही.</p>
+    </div>
+    <div class="service-card">
+      <span class="icon">📊</span>
+      <h3>बाजारभाव माहिती</h3>
+      <p>दैनंदिन बाजारभाव व आले बाजाराची सद्यस्थिती याबद्दल शेतकऱ्यांना नियमित माहिती दिली जाते.</p>
+    </div>
+    <div class="service-card">
+      <span class="icon">🤝</span>
+      <h3>कर्ज सुविधा</h3>
+      <p>नोंदणीकृत शेतकऱ्यांना पीक कर्ज मिळवण्यासाठी आम्ही मदत करतो. आमच्याशी जोडलेल्या बँकांमार्फत सुलभ कर्ज.</p>
+    </div>
+    <div class="service-card">
+      <span class="icon">🌱</span>
+      <h3>आले लागवड सल्ला</h3>
+      <p>उत्तम उत्पादनासाठी कृषी तज्ञांकडून मार्गदर्शन. बियाण्यांपासून काढणीपर्यंत सर्व सल्ला मोफत.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section" id="register">
+  <div class="form-inner">
+    <div class="form-info fade-up">
+      <div class="section-tag">शेतकरी नोंदणी</div>
+      <h2 class="section-title">आपले आले विकण्यासाठी नोंदणी करा</h2>
+      <p class="section-sub">खालील फॉर्म भरा आणि आमची टीम लवकरच आपल्याशी संपर्क साधेल.</p>
+      <div class="form-steps">
+        <div class="form-step">
+          <div class="step-num">१</div>
+          <p>फॉर्ममध्ये आपले नाव, संपर्क क्रमांक व गावाचे नाव भरा.</p>
+        </div>
+        <div class="form-step">
+          <div class="step-num">२</div>
+          <p>आपल्याकडे किती किलो आले आहे ते नमूद करा.</p>
+        </div>
+        <div class="form-step">
+          <div class="step-num">३</div>
+          <p>फॉर्म सबमिट करा — आमची टीम २४ तासांत संपर्क करेल.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card fade-up" style="transition-delay:0.15s;">
+      <h3>🌿 शेतकरी नोंदणी फॉर्म</h3>
+      <p class="form-subtitle">सर्व माहिती मराठीत किंवा इंग्रजीत भरा</p>
+
+      <form id="farmerForm">
+        <!-- Name -->
+        <div class="form-group">
+          <label>शेतकऱ्याचे पूर्ण नाव <span>*</span></label>
+          <input type="text" id="farmerName" placeholder="उदा. रामराव पाटील" required>
+        </div>
+
+        <!-- Phone + Village -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>मोबाइल नंबर <span>*</span></label>
+            <input type="tel" id="phone" placeholder="उदा. ९८७६५४३२१०" maxlength="10" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label>गावाचे नाव <span>*</span></label>
+            <input type="text" id="village" placeholder="उदा. सावंगी" required>
+          </div>
+        </div>
+
+        <!-- Taluka + District -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>तालुका</label>
+            <input type="text" id="taluka" placeholder="उदा. वर्धा">
+          </div>
+          <div class="form-group">
+            <label>जिल्हा</label>
+            <input type="text" id="district" placeholder="उदा. नागपूर">
+          </div>
+        </div>
+
+        <!-- Ginger quantity -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>आले प्रमाण (किलो) <span>*</span></label>
+            <input type="number" id="gingerQty" placeholder="उदा. ५०० किलो" min="1" required>
+          </div>
+          <div class="form-group">
+            <label>आले प्रकार</label>
+            <select id="gingerType">
+              <option value="">निवडा</option>
+              <option value="ताजे आले">ताजे आले</option>
+              <option value="वाळलेले आले">वाळलेले आले</option>
+              <option value="सुंठ">सुंठ (वाळवलेले)</option>
+              <option value="सेंद्रिय आले">सेंद्रिय आले</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Expected price -->
+        <div class="form-group">
+          <label>अपेक्षित भाव (रु./किलो) — ऐच्छिक</label>
+          <input type="number" id="expectedPrice" placeholder="उदा. ₹ ४०">
+        </div>
+
+        <!-- Additional info -->
+        <div class="form-group">
+          <label>अतिरिक्त माहिती</label>
+          <textarea id="additionalInfo" rows="3" placeholder="इतर काही सांगायचे असल्यास येथे लिहा..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="btnText">✅ फॉर्म सबमिट करा</span>
+          <div class="spinner" id="spinner"></div>
+        </button>
+      </form>
+
+      <div class="msg-box msg-success" id="successMsg">
+        🎉 धन्यवाद! आपली नोंदणी यशस्वीरीत्या झाली आहे. आमची टीम लवकरच संपर्क करेल.
+      </div>
+      <div class="msg-box msg-error" id="errorMsg">
+        ❌ काहीतरी चूक झाली. कृपया पुन्हा प्रयत्न करा किंवा थेट फोन करा.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="fade-up" style="text-align:center;">
+    <div class="section-tag">संपर्क</div>
+    <h2 class="section-title">आमच्याशी संपर्क करा</h2>
+  </div>
+  <div class="contact-grid fade-up" style="transition-delay:0.1s;">
+    <div class="contact-card">
+      <div class="icon">📞</div>
+      <h4>फोन / WhatsApp</h4>
+      <p><strong>सागर चव्हाण</strong><br><a href="tel:+918600226800">+91 86002 26800</a></p>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📍</div>
+      <h4>कार्यालयाचा पत्ता</h4>
+      <p>तनुश्री ट्रेडर्स<br>सुलतानपूर, ता. खुलताबाद<br>जि. छत्रपती संभाजीनगर, महाराष्ट्र</p>
+    </div>
+    <div class="contact-card">
+      <div class="icon">🕐</div>
+      <h4>कार्यालय वेळ</h4>
+      <p>सोमवार – शनिवार<br>सकाळी ८:०० – सायंकाळी ७:००<br>रविवार: सकाळी ९:०० – दुपारी १:००</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">🌿 तनुश्री ट्रेडर्स</div>
+  <p>मालक: सागर चव्हाण &nbsp;|&nbsp; 📞 +91 86002 26800</p>
+  <p>सुलतानपूर, ता. खुलताबाद, जि. छत्रपती संभाजीनगर, महाराष्ट्र</p>
+  <p style="margin-top:8px; font-size:0.8rem; opacity:0.5;">© २०२५ सर्व हक्क राखीव</p>
+</footer>
+
+<script>
+// ── Google Sheet Web App URL ──
+// ⚠️  IMPORTANT: Replace this URL with your own Google Apps Script Web App URL
+// See setup instructions below the script
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzv09CewMuNQg3rHYTGQJ6QfLOlw-FVs41d6vwPlQieVozPZ7pXuT_MuNeSKMQ_aoo/exec";
+
+// ── Intersection Observer for animations ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── Form submit ──
+document.getElementById('farmerForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn     = document.getElementById('submitBtn');
+  const spinner = document.getElementById('spinner');
+  const btnText = document.getElementById('btnText');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg   = document.getElementById('errorMsg');
+
+  // Hide prev messages
+  successMsg.style.display = 'none';
+  errorMsg.style.display   = 'none';
+
+  // Gather data
+  const data = {
+    timestamp:     new Date().toLocaleString('mr-IN', { timeZone: 'Asia/Kolkata' }),
+    farmerName:    document.getElementById('farmerName').value.trim(),
+    phone:         document.getElementById('phone').value.trim(),
+    village:       document.getElementById('village').value.trim(),
+    taluka:        document.getElementById('taluka').value.trim(),
+    district:      document.getElementById('district').value.trim(),
+    gingerQty:     document.getElementById('gingerQty').value,
+    gingerType:    document.getElementById('gingerType').value,
+    expectedPrice: document.getElementById('expectedPrice').value,
+    additionalInfo:document.getElementById('additionalInfo').value.trim(),
+  };
+
+  // UI loading
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btnText.textContent = 'सबमिट होत आहे...';
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    successMsg.style.display = 'block';
+    document.getElementById('farmerForm').reset();
+  } catch (err) {
+    console.error(err);
+    errorMsg.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    btnText.textContent = '✅ फॉर्म सबमिट करा';
+  }
+});
+
+// Phone – only digits
+document.getElementById('phone').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g, '').slice(0, 10);
+});
+</script>
+
+<!--
+════════════════════════════════════════════════════
+  GOOGLE SHEET SETUP — फक्त एकदा करायचे आहे
+════════════════════════════════════════════════════
+
+STEP 1: Google Sheet तयार करा
+  → Google Sheets उघडा (sheets.google.com)
+  → नवीन Spreadsheet बनवा
+  → Sheet 1 मध्ये पहिल्या ओळीत हे Columns लिहा:
+     A: वेळ | B: शेतकऱ्याचे नाव | C: मोबाइल | D: गाव
+     E: तालुका | F: जिल्हा | G: आले (किलो) | H: आले प्रकार
+     I: अपेक्षित भाव | J: अतिरिक्त माहिती
+
+STEP 2: Apps Script उघडा
+  → Extensions → Apps Script
+
+STEP 3: हा Code paste करा:
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      data.timestamp,
+      data.farmerName,
+      data.phone,
+      data.village,
+      data.taluka,
+      data.district,
+      data.gingerQty,
+      data.gingerType,
+      data.expectedPrice,
+      data.additionalInfo
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({status:"success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({status:"error", message:err.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+STEP 4: Deploy करा
+  → Deploy → New Deployment
+  → Type: Web App
+  → Execute as: Me
+  → Who has access: Anyone
+  → Deploy → URL copy करा
+
+STEP 5: URL paste करा
+  → वरील script मधील SHEET_URL मध्ये URL paste करा:
+     const SHEET_URL = "https://script.google.com/macros/s/YOUR_ID/exec";
+
+════════════════════════════════════════════════════
+-->
+</body>
+</html>
